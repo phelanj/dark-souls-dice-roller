@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<title> </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+<link rel="stylesheet" href="/style.css">
+
+<body>
+    <main class="sans-serif center mw6 pa4">
+        <label class="f6 b db mb2">Selected Dice:</label>
+        <input id="die-display" class="input-reset ba b--black-20 pa2 mb2 db w-100"><br>
+        <label class="f6 b db mb2">Results:</label>
+        <input id="results-display" class="input-reset ba b--black-20 pa2 mb2 db w-100"><br>
+        <section id="dice-options">
+            <a id="black" class="tc f5 fw6  ttu no-underline br-pill ph3 pv3 mb2 dib white bg-black pointer" onclick="addDie(0)">Black</a>
+            <a id="blue" class="tc f5 fw6 ttu no-underline br-pill ph3 pv3 mb2 dib white bg-blue pointer" onclick="addDie(1)">Blue</a>
+            <a id="orange" class="tc f5 fw6 ttu no-underline br-pill ph3 pv3 mb2 dib white bg-orange pointer" onclick="addDie(2)">Orange</a>
+            <a id="roll" class="tc f5 fw6 ttu no-underline br-pill ph3 pv3 mb2 dib white bg-green pointer" onclick="addDie(3)">Roll</a>
+        </section>
+        <hr>
+        <br>
+        <a id="get-results" class="tc f5  ttu no-underline br-pill ph3 pv3 mb2 dib white bg-black pointer" onclick="getResults()">Get Results</a>
+        <a id="Clear" class="tc f5  ttu no-underline br-pill ph3 pv3 mb2 dib white bg-black pointer" onclick="clearResults()">Clear</a>
+
+    </main>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+<script src="/script.js"></script>
+
+</html>

@@ -1,5 +1,5 @@
-let dieDisplay = document.getElementById("die-display");
-let resultDisplay = document.getElementById("results-display");
+let dieDisplay = document.getElementById("input-span");
+let resultDisplay = document.getElementById("output-span");
 let total = 0;
 let totalOutput = "";
 let re = /= 0/;
@@ -33,17 +33,22 @@ let dice = [{
 function addDie(input) {
     checkIfClearNeeded(input);
     if (total != 0 || re.exec(totalOutput)) {
-        clearResults();
+        clearAll();
     }
     dice[input]["count"]++;
     displayDice();
 }
 
 function getResults() {
-    if (total == 0 && !re.exec(totalOutput)) {
-        performRandom();
-        addResults();
-    }
+    clearResults();
+    performRandom();
+    resultDisplay.classList.add("fade-in");
+    const animated = document.querySelector('.fade-in');
+    animated.addEventListener('animationend', () => {
+        resultDisplay.classList.remove("fade-in");
+    });
+    addResults();
+
 }
 
 function displayDice() {
@@ -61,12 +66,13 @@ function displayDice() {
             first = false;
         }
     }
-    dieDisplay.value = output;
+    dieDisplay.innerHTML = output;
 }
 
 function performRandom() {
     let die;
     let count;
+    let currentResult = "";
     for (die in dice) {
         for (count = 0; count < dice[die]["count"]; count++) {
             var rollArray = dice[die]["rollArray"];
@@ -101,19 +107,26 @@ function addResults() {
     output += " = " + String(dieTotal);
     totalOutput = output;
     total = dieTotal;
-    resultDisplay.value = output;
+    resultDisplay.innerHTML = output;
 }
 
-function clearResults() {
+function clearAll() {
     let die;
     for (die in dice) {
         dice[die]["count"] = 0;
         dice[die]["result"] = "";
     }
-    dieDisplay.value = "";
-    resultDisplay.value = "";
+    dieDisplay.innerHTML = "&nbsp;";
+    resultDisplay.innerHTML = "&nbsp;";
     total = 0;
     totalOutput = "";
+}
+
+function clearResults() {
+    let die;
+    for (die in dice) {
+        dice[die]["result"] = "";
+    }
 }
 
 function checkIfClearNeeded(input) {
@@ -122,12 +135,12 @@ function checkIfClearNeeded(input) {
     if (input == 3) {
         for (die = 0; die < dice.length - 1; die++) {
             if (dice[die]["count"] > 0) {
-                clearResults();
+                clearAll();
             }
         }
     } else {
         if (dice[3]["count"] > 0) {
-            clearResults();
+            clearAll();
         }
     }
 }

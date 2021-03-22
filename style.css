@@ -1,3 +1,20 @@
 #dice-options a {
-  width: 100px;
+    width: 100px;
+}
+
+a {
+    user-select: none;
+}
+
+.fade-in {
+    animation: fadeIn ease .2s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
